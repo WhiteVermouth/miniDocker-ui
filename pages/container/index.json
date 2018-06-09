@@ -1,1 +1,14 @@
-{}
+{
+  "usingComponents": {
+    "zan-panel": "../../utils/zanui/panel/index",
+    "zan-row": "../../utils/zanui/row/index",
+    "zan-col": "../../utils/zanui/col/index",
+    "zan-icon": "../../utils/zanui/icon/index",
+    "zan-cell": "../../utils/zanui/cell/index",
+    "zan-cell-group": "../../utils/zanui/cell-group/index",
+    "zan-button": "../../utils/zanui/btn/index",
+    "zan-button-group": "../../utils/zanui/btn-group/index",
+    "zan-toast": "../../utils/zanui/toast/index"
+  },
+  "navigationBarTitleText": "容器详细信息"
+}

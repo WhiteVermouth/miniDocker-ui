@@ -1,2 +1,63 @@
 <!--pages/container/index.wxml-->
-<text>pages/container/index.wxml</text>
+<zan-toast id="zan-toast"></zan-toast>
+<view>
+  <zan-panel title="基本操作">
+    <zan-row>
+      <zan-col col="8" col-class="custom-zan-col">
+        <view wx:if="{{status == 'running'}}" bind:tap="play" class="button-play">
+          <zan-icon type="pause"></zan-icon>
+        </view>
+        <view wx:else bind:tap="play">
+          <zan-icon type="play"></zan-icon>
+        </view>
+      </zan-col>
+      <zan-col col="8" col-class="custom-zan-col">
+        <view bind:tap="stop" class="button-stop">
+          <zan-icon type="stop"></zan-icon>
+        </view>
+      </zan-col>
+      <zan-col col="8" col-class="custom-zan-col">
+        <view bind:tap="remove" class="button-delete">
+          <zan-icon type="delete"></zan-icon>
+        </view>
+      </zan-col>
+    </zan-row>
+  </zan-panel>
+  <zan-panel title="基本信息">
+    <zan-cell-group>
+      <zan-cell title="名称" value="{{name}}"></zan-cell>
+      <zan-cell title="镜像" value="{{image}}"></zan-cell>
+      <zan-cell title="短ID" value="{{short_id}}"></zan-cell>
+    </zan-cell-group>
+  </zan-panel>
+  <zan-panel title="高级操作">
+    <zan-button-group>
+      <zan-button bind:btnclick="getStats">{{button.stat_button_title}}</zan-button>
+      <zan-button bind:btnclick="getLogs">{{button.log_button_title}}</zan-button>
+    </zan-button-group>
+  </zan-panel>
+  <view wx:if="{{info.kind == 'logs'}}">
+    <view wx:if="{{info.show}}">
+      <zan-panel title="{{info.title}}" hide-border="true">
+        <view class="info-content">
+          <rich-text>日志开始：</rich-text>
+          <rich-text>{{info.content}}</rich-text>
+          <rich-text>日志结束。</rich-text>
+        </view>
+      </zan-panel>
+    </view>
+  </view>
+  <view wx:elif="{{info.kind == 'stats'}}">
+    <view wx:if="{{info.show}}">
+      <zan-panel title="{{info.title}}" hide-border="true">
+        <view class="info-content">
+          <zan-cell-group>
+            <zan-cell title="CPU" value="{{info.content.cpu_percent}}%"></zan-cell>
+            <zan-cell title="内存" value="{{info.content.memory_usage}}MB"></zan-cell>
+            <zan-cell title="网络" value="↓{{info.content.network_usage.download}}MB/{{info.content.network_usage.upload}}MB↑"></zan-cell>
+          </zan-cell-group>
+        </view>
+      </zan-panel>
+    </view>
+  </view>
+</view>

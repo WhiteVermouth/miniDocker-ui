@@ -11,11 +11,20 @@
         <view>
           <zan-cell-group>
             <view wx:for="{{server.containers}}" wx:for-item="container" wx:key="shortid">
-              <zan-cell title="{{container.name}}" label="{{container.image}}" value="详细信息" is-link></zan-cell>
+              <zan-cell title="{{container.name}}" label="{{container.image}}" value="详细信息" is-link url="../container/index?name={{container.name}}&image={{container.image}}&&short_id={{container.short_id}}&status={{container.status}}&address={{server.address}}&token={{server.token}}"></zan-cell>
             </view>
+            <zan-cell title="删除服务器" class="button-delete" bind:tap="deleteServer" data-remark="{{server.remark}}">
+              <zan-icon slot="footer" type="delete" class='button-delete'></zan-icon>
+            </zan-cell>
           </zan-cell-group>
         </view>
       </zan-panel>
     </view>
   </view>
+  <view class="no-server-text" wx:if="{{servers.length == 0}}">
+    <rich-text>还没有添加服务器</rich-text>
+    <rich-text>点击上方绿色按钮添加</rich-text>
+  </view>
 </view>
+
+<zan-toast id="zan-toast"></zan-toast>

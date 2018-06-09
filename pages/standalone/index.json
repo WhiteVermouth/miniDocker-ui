@@ -3,6 +3,9 @@
     "zan-button": "../../utils/zanui/btn/index",
     "zan-panel": "../../utils/zanui/panel/index",
     "zan-cell": "../../utils/zanui/cell/index",
-    "zan-cell-group": "../../utils/zanui/cell-group/index"
-  }
+    "zan-cell-group": "../../utils/zanui/cell-group/index",
+    "zan-icon": "../../utils/zanui/icon/index",
+    "zan-toast": "../../utils/zanui/toast/index"
+  },
+  "enablePullDownRefresh": true
 }

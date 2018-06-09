@@ -1,5 +1,15 @@
 /* pages/standalone/index.wxss */
+
 .server-wrap {
   padding: 10px;
   padding-bottom: 30px;
+}
+
+.no-server-text {
+  text-align: center;
+  padding-top: 40%;
+}
+
+.button-delete {
+  color: red;
 }

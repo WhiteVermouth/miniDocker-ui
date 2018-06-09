@@ -1,6 +1,7 @@
 // pages/server_form/index.js
 const Toptips = require("../../utils/zanui/toptips/index")
 const utils = require("../../utils/util.js")
+var app = getApp()
 
 Page({
 
@@ -81,14 +82,14 @@ Page({
       })
       return
     }
-    if (!utils.validateIPAddress(address)) {
-      Toptips({
-        content: "无效地址"
-      })
-      return
-    }
+    // if (!utils.validateIPAddress(address)) {
+    //   Toptips({
+    //     content: "无效地址"
+    //   })
+    //   return
+    // }
     wx.request({
-      url: 'http://172.28.128.8:5000/auth',
+      url: app.globalData.requestDomain + '/auth',
       method: 'POST',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -101,7 +102,14 @@ Page({
       success: (res) => {
         if (res.data.status === "success") {
           const token = res.data.token
-          wx.setStorageSync(remark, token)
+          var servers = wx.getStorageSync("servers")
+          if (!servers)
+            servers = {}
+          servers[remark] = {
+            "token": token,
+            "address": address
+          }
+          wx.setStorageSync("servers", servers)
           wx.navigateBack({
             delta: 1
           })
@@ -112,7 +120,9 @@ Page({
         }
       },
       fail: function (res) {
-        console.log(res);
+        Toptips({
+          content: "添加失败"
+        })
       }
     })
   },
