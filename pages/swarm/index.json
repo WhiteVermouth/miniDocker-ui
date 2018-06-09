@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "zan-icon": "../../utils/zanui/icon/index",
+    "zan-button": "../../utils/zanui/btn/index",
+    "zan-toptips": "../../utils/zanui/toptips/index"
+  }
+}

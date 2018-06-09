@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "zan-button": "../../utils/zanui/btn/index",
+    "zan-panel": "../../utils/zanui/panel/index",
+    "zan-cell": "../../utils/zanui/cell/index",
+    "zan-cell-group": "../../utils/zanui/cell-group/index"
+  }
+}

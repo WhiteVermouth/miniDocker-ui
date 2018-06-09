@@ -1,0 +1,14 @@
+<!--pages/swarm/index.wxml-->
+<view>
+  <view class='icon-wrap'>
+    <zan-icon type="edit"></zan-icon>
+  </view>
+  <view class='text-wrap'>
+    <text>Swarm Mode 依然处于开发阶段\n</text>
+    <text>预计于2.0版本发布\n</text>
+    <text>敬请期待\n</text>
+     <zan-button type="primary" size="small" bind:btnclick="testNetwork">测试网络</zan-button> 
+  </view>
+</view>
+
+ <zan-toptips id="zan-toptips" content="{{ content }}" /> 

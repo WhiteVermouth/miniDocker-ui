@@ -1,0 +1,31 @@
+<!--pages/server_form/index.wxml-->
+<view class='container'>
+
+  <view class="icon-wrap">
+    <zan-icon type="exchange"></zan-icon>
+  </view>
+
+  <view>
+    <form bindsubmit='add' bindreset='cancel'>
+      <view class="form-wrap">
+        <zan-field title="地址" name="address" placeholder="服务器IP地址或域名" maxlength="50" mode="wrapped">
+        </zan-field>
+        <zan-field title="密码" name="password" inputType="password" placeholder="服务器密码" maxlength="20" mode="wrapped">
+        </zan-field>
+        <zan-field title="备注" name="remark" placeholder="服务器备注（唯一）" maxlength="20" mode="wrapped">
+        </zan-field>
+      </view>
+
+      <view class="button-wrap">
+        <view class='button'>
+          <button form-type='submit'>添加</button>
+        </view>
+        <view class='button'>
+          <button form-type='reset'>取消</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>
+
+<zan-toptips id="zan-toptips"></zan-toptips>

@@ -1,0 +1,5 @@
+/* pages/standalone/index.wxss */
+.server-wrap {
+  padding: 10px;
+  padding-bottom: 30px;
+}

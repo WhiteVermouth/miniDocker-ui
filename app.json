@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/standalone/index",
+    "pages/swarm/index",
+    "pages/server_form/index",
+    "pages/container/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "miniDocker",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/standalone/index",
+        "text": "Standalone模式",
+        "iconPath": "images/standalone.png",
+        "selectedIconPath": "images/standalone_selected.png"
+      },
+      {
+        "pagePath": "pages/swarm/index",
+        "text": "Swarm模式",
+        "iconPath": "images/swarm.png",
+        "selectedIconPath": "images/swarm_selected.png"
+      }
+    ]
+  }
+}

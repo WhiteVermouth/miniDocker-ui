@@ -1,0 +1,21 @@
+<!--pages/standalone/index.wxml-->
+<view>
+  <view class>
+    <zan-button type="primary" bind:tap="addServer">
+      添加服务器
+    </zan-button>
+  </view>
+  <view class="server-wrap">
+    <view wx:for="{{servers}}" wx:for-item="server" wx:key="remark">
+      <zan-panel title="{{server.remark}}">
+        <view>
+          <zan-cell-group>
+            <view wx:for="{{server.containers}}" wx:for-item="container" wx:key="shortid">
+              <zan-cell title="{{container.name}}" label="{{container.image}}" value="详细信息" is-link></zan-cell>
+            </view>
+          </zan-cell-group>
+        </view>
+      </zan-panel>
+    </view>
+  </view>
+</view>
