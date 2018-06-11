@@ -8,8 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    server_index: -1,
+    container_index: -1,
     address: "",
     token: "",
+    remark: "",
     name: "",
     image: "",
     short_id: "",
@@ -29,10 +32,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
+      server_index: options.server_index,
+      container_index: options.container_index,
       address: options.address,
       token: options.token,
+      remark: options.remark,
       name: options.name,
       image: options.image,
       short_id: options.short_id,
@@ -43,56 +49,56 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
-  play: function () {
-    Toast.loading({
-      selector: '#zan-toast'
-    });
+  play: function() {
+    wx.showLoading({
+      title: '执行中',
+    })
     if (this.data.status == "running" || this.data.status == "paused") {
       wx.request({
         url: app.globalData.requestDomain + '/switch_pause_status',
@@ -108,6 +114,8 @@ Page({
             this.setData({
               status: this.data.status == "paused" ? "running" : "paused"
             })
+            this.update_standalone_page_container_status(this.data.status)
+            wx.hideLoading()
             if (this.data.status == "running") {
               Toast({
                 message: '容器已成功启动',
@@ -119,6 +127,21 @@ Page({
                 selector: '#zan-toast'
               });
             }
+          }
+          // TODO
+        },
+        fail: (res) => {
+          wx.hideLoading()
+          if (this.data.status == "running") {
+            Toast({
+              message: '容器暂停失败',
+              selector: '#zan-toast'
+            });
+          } else {
+            Toast({
+              message: '容器启动失败',
+              selector: '#zan-toast'
+            });
           }
         }
       })
@@ -137,20 +160,44 @@ Page({
             this.setData({
               status: "running"
             })
+            this.update_standalone_page_container_status(this.data.status)
+            wx.hideLoading()
             Toast({
               message: '容器已成功启动',
               selector: '#zan-toast'
             });
+          } else {
+            wx.hideLoading()
+            Toast({
+              message: '容器启动失败',
+              selector: '#zan-toast'
+            });
           }
+        },
+        fail: (res) => {
+          wx.hideLoading()
+          Toast({
+            message: '容器启动失败',
+            selector: '#zan-toast'
+          });
         }
       })
     }
   },
 
-  stop: function () {
-    Toast.loading({
-      selector: '#zan-toast'
-    });
+  update_standalone_page_container_status: function(status) {
+    var pages = getCurrentPages()
+    var prevPage = pages[pages.length - 2]
+    var prevPageStatus = 'servers[' + this.data.server_index + '].containers[' + this.data.container_index + '].status'
+    prevPage.setData({
+      [prevPageStatus]: status
+    })
+  },
+
+  stop: function() {
+    wx.showLoading({
+      title: '停止中',
+    })
     wx.request({
       url: app.globalData.requestDomain + '/stop_container',
       data: {
@@ -165,19 +212,34 @@ Page({
           this.setData({
             status: "exited"
           })
+          this.update_standalone_page_container_status(this.data.status)
+          wx.hideLoading()
           Toast({
             message: '容器已成功停止',
             selector: '#zan-toast'
           });
+        } else {
+          wx.hideLoading()
+          Toast({
+            message: '容器停止失败',
+            selector: '#zan-toast'
+          });
         }
+      },
+      fail: (res) => {
+        wx.hideLoading()
+        Toast({
+          message: '容器停止失败',
+          selector: '#zan-toast'
+        });
       }
     })
   },
 
-  remove: function () {
-    Toast.loading({
-      selector: '#zan-toast'
-    });
+  remove: function() {
+    wx.showLoading({
+      title: '删除中',
+    })
     wx.request({
       url: app.globalData.requestDomain + '/remove_container',
       data: {
@@ -188,17 +250,29 @@ Page({
       method: 'POST',
       dataType: 'json',
       success: (res) => {
-        Toast.clear()
+        wx.hideLoading()
         if (res.data.status == "success") {
           wx.navigateBack({
             delta: '1'
           })
+        } else {
+          Toast({
+            message: '容器删除失败',
+            selector: '#zan-toast'
+          })
         }
+      },
+      fail: (res) => {
+        wx.hideLoading()
+        Toast({
+          message: '容器删除失败',
+          selector: '#zan-toast'
+        })
       }
     })
   },
 
-  getStats: function () {
+  getStats: function() {
     if (this.data.button.stat_button_title == "屏蔽容器运行状态") {
       this.setData({
         info: {
@@ -214,9 +288,9 @@ Page({
       })
       return
     }
-    Toast.loading({
-      selector: '#zan-toast'
-    });
+    wx.showLoading({
+      title: '获取中',
+    })
     wx.request({
       url: app.globalData.requestDomain + '/get_stats',
       data: {
@@ -241,13 +315,26 @@ Page({
               log_button_title: "显示容器日志"
             }
           })
-          Toast.clear()
+          wx.hideLoading()
+        } else {
+          wx.hideLoading()
+          Toast({
+            message: '获取失败',
+            selector: '#zan-toast'
+          })
         }
+      },
+      fail: (res) => {
+        wx.hideLoading()
+        Toast({
+          message: '获取失败',
+          selector: '#zan-toast'
+        })
       }
     })
   },
 
-  getLogs: function () {
+  getLogs: function() {
     if (this.data.button.log_button_title == "屏蔽容器日志") {
       this.setData({
         info: {
@@ -263,9 +350,9 @@ Page({
       })
       return
     }
-    Toast.loading({
-      selector: '#zan-toast'
-    });
+    wx.showLoading({
+      title: '获取中',
+    })
     wx.request({
       url: app.globalData.requestDomain + '/get_logs',
       data: {
@@ -290,8 +377,21 @@ Page({
               log_button_title: "屏蔽容器日志"
             }
           })
-          Toast.clear()
+          wx.hideLoading()
+        } else {
+          wx.hideLoading()
+          Toast({
+            message: '获取失败',
+            selector: '#zan-toast'
+          })
         }
+      },
+      fail: (res) => {
+        wx.hideLoading()
+        Toast({
+          message: '获取失败',
+          selector: '#zan-toast'
+        })
       }
     })
   }

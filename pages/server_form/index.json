@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText":"添加服务器",
+  "navigationBarTitleText": "添加服务器",
   "usingComponents": {
     "zan-icon": "../../utils/zanui/icon/index",
     "zan-field": "../../utils/zanui/field/index",

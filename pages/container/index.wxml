@@ -1,5 +1,4 @@
 <!--pages/container/index.wxml-->
-<zan-toast id="zan-toast"></zan-toast>
 <view>
   <zan-panel title="基本操作">
     <zan-row>
@@ -61,3 +60,4 @@
     </view>
   </view>
 </view>
+<zan-toast id="zan-toast"></zan-toast>

@@ -51,7 +51,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.loadContainerInfo()
+    var servers = wx.getStorageSync("servers")
+    if (this.data.servers.length != Object.keys(servers).length) {
+      wx.showLoading({
+        title: '加载容器信息中',
+      })
+      this.loadContainerInfo()
+      wx.hideLoading()
+    }
   },
 
   /**
@@ -100,15 +107,19 @@ Page({
   },
 
   deleteServer: function (event) {
-    Toast.loading({
-      selector: '#zan-toast'
+    wx.showLoading({
+      title: '删除中',
     })
     var remark = event.target.dataset.remark
     var servers = wx.getStorageSync("servers")
     delete servers[remark]
     wx.setStorageSync("servers", servers)
     this.loadContainerInfo()
-    Toast.clear()
+    wx.hideLoading()
+    Toast({
+      message: '删除成功',
+      selector: '#zan-toast'
+    })
   },
 
   loadContainerInfo: function () {
@@ -146,7 +157,10 @@ Page({
           })
         },
         fail: (res) => {
-          console.log(res)
+          Toast({
+            message: '容器信息加载失败',
+            selector: '#zan-toast'
+          })
         }
       })
     }

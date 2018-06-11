@@ -4,6 +4,6 @@ App({
 
   },
   globalData: {
-    requestDomain: "http://minidocker.vermouthx.com"
+    requestDomain: "https://minidocker.yourarcher.com"
   }
 })

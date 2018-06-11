@@ -15,56 +15,56 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
@@ -72,22 +72,27 @@ Page({
    * 添加按钮
    */
 
-  add: function (e) {
+  add: function(e) {
     var address = e.detail.value.address
     var password = e.detail.value.password
     var remark = e.detail.value.remark
     if (!address | !password | !remark) {
+      wx.hideLoading()
       Toptips({
         content: "服务器信息需填写完整"
       })
       return
     }
-    // if (!utils.validateIPAddress(address)) {
-    //   Toptips({
-    //     content: "无效地址"
-    //   })
-    //   return
-    // }
+    if (!utils.isValidIPAddress(address) && !utils.isValidDomain(address)) {
+      wx.hideLoading()
+      Toptips({
+        content: "无效地址"
+      })
+      return
+    }
+    wx.showLoading({
+      title: '添加中',
+    })
     wx.request({
       url: app.globalData.requestDomain + '/auth',
       method: 'POST',
@@ -110,16 +115,19 @@ Page({
             "address": address
           }
           wx.setStorageSync("servers", servers)
+          wx.hideLoading()
           wx.navigateBack({
             delta: 1
           })
         } else {
+          wx.hideLoading()
           Toptips({
             content: "添加失败"
           })
         }
       },
-      fail: function (res) {
+      fail: function(res) {
+        wx.hideLoading()
         Toptips({
           content: "添加失败"
         })
@@ -130,7 +138,7 @@ Page({
   /**
    * 取消按钮
    */
-  cancel: function () {
+  cancel: function() {
     wx.navigateBack({
       delta: 1
     })
