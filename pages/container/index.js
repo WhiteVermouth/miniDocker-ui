@@ -252,6 +252,13 @@ Page({
       success: (res) => {
         wx.hideLoading()
         if (res.data.status == "success") {
+          var pages = getCurrentPages()
+          var prevPage = pages[pages.length - 2]
+          var prevPageContainers = 'servers[' + this.data.server_index + '].containers'
+          prevPage.data.servers[this.data.server_index].containers.splice(this.data.container_index, 1)
+          prevPage.setData({
+            [prevPageContainers]: prevPage.data.servers[this.data.server_index].containers
+          })
           wx.navigateBack({
             delta: '1'
           })
