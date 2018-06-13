@@ -27,6 +27,7 @@
       <zan-cell title="名称" value="{{name}}"></zan-cell>
       <zan-cell title="镜像" value="{{image}}"></zan-cell>
       <zan-cell title="短ID" value="{{short_id}}"></zan-cell>
+      <zan-cell title="状态" value="{{status}}"></zan-cell>
     </zan-cell-group>
   </zan-panel>
   <zan-panel title="高级操作">
@@ -39,9 +40,15 @@
     <view wx:if="{{info.show}}">
       <zan-panel title="{{info.title}}" hide-border="true">
         <view class="info-content">
-          <text>日志开始：\n</text>
-          <text>{{info.content}}</text>
-          <text>日志结束。\n</text>
+          <zan-button-group>
+            <zan-cell value="日志开始">
+              <zan-icon slot="icon" type="records"></zan-icon>
+            </zan-cell>
+            <text>{{info.content}}</text>
+            <zan-cell value="日志结束">
+              <zan-icon slot="icon" type="check"></zan-icon>
+            </zan-cell>
+          </zan-button-group>
         </view>
       </zan-panel>
     </view>

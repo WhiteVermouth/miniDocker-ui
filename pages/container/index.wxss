@@ -19,7 +19,6 @@
 
 .info-content {
   padding: 2px;
-  padding-top: 7px;
-  padding-bottom: 20px;
-  font-size: 10px;
+  padding-bottom: 10px;
+  font-size: 12px;
 }
