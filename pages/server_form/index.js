@@ -1,7 +1,12 @@
 // pages/server_form/index.js
-const Toptips = require("../../utils/zanui/toptips/index")
 const utils = require("../../utils/util.js")
-var app = getApp()
+const {
+  $Message
+} = require('../../ui/iview/base/index');
+const {
+  $Toast
+} = require('../../ui/iview/base/index');
+const app = getApp()
 
 Page({
 
@@ -9,7 +14,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    address: '',
+    password: '',
+    remark: ''
   },
 
   /**
@@ -72,26 +79,28 @@ Page({
    * 添加按钮
    */
 
-  add: function(e) {
-    var address = e.detail.value.address
-    var password = e.detail.value.password
-    var remark = e.detail.value.remark
+  add: function() {
+    var address = this.data.address
+    var password = this.data.password
+    var remark = this.data.remark
     if (!address | !password | !remark) {
-      wx.hideLoading()
-      Toptips({
-        content: "服务器信息需填写完整"
-      })
+      $Message({
+        content: '请将信息填写完整',
+        type: 'warning'
+      });
       return
     }
     if (!utils.isValidIPAddress(address) && !utils.isValidDomain(address)) {
-      wx.hideLoading()
-      Toptips({
-        content: "无效地址"
-      })
+      $Message({
+        content: '无效地址',
+        type: 'error'
+      });
       return
     }
-    wx.showLoading({
-      title: '添加中',
+    $Toast({
+      content: '正在添加',
+      duration: 0,
+      type: 'loading'
     })
     wx.request({
       url: app.globalData.requestDomain + '/auth',
@@ -115,21 +124,23 @@ Page({
             "address": address
           }
           wx.setStorageSync("servers", servers)
-          wx.hideLoading()
+          $Toast.hide()
           wx.navigateBack({
             delta: 1
           })
         } else {
-          wx.hideLoading()
-          Toptips({
-            content: "添加失败"
+          $Toast.hide()
+          $Message({
+            content: "添加失败",
+            type: 'error'
           })
         }
       },
       fail: function(res) {
-        wx.hideLoading()
-        Toptips({
-          content: "添加失败"
+        $Toast.hide()
+        $Message({
+          content: "添加失败",
+          type: 'error'
         })
       }
     })
@@ -141,6 +152,15 @@ Page({
   cancel: function() {
     wx.navigateBack({
       delta: 1
+    })
+  },
+
+  /**
+   * 输入框值改变
+   */
+  change: function(e) {
+    this.setData({
+      [e.currentTarget.dataset.var]: e.detail.detail.value
     })
   }
 })

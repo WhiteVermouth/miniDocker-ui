@@ -1,24 +1,12 @@
 /* pages/container/index.wxss */
 
-.custom-zan-col {
+.custom-i-col {
   padding: 20px;
   text-align: center;
 }
 
-.button-play {
-  color: blue;
-}
-
-.button-stop {
-  color: rebeccapurple;
-}
-
-.button-delete {
-  color: red;
-}
-
 .info-content {
-  padding: 2px;
-  padding-bottom: 10px;
+  padding: 15px;
+  padding-top: 0px;
   font-size: 12px;
 }

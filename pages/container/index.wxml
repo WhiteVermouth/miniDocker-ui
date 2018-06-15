@@ -1,70 +1,68 @@
 <!--pages/container/index.wxml-->
 <view>
-  <zan-panel title="基本操作">
-    <zan-row>
-      <zan-col col="8" col-class="custom-zan-col">
+  <i-panel title="基本操作">
+    <i-row>
+      <i-col span="8" i-class="custom-i-col">
         <view wx:if="{{status == 'running'}}" bind:tap="play" class="button-play">
-          <zan-icon type="pause"></zan-icon>
+          <i-icon type="suspend" size="25" />
         </view>
         <view wx:else bind:tap="play">
-          <zan-icon type="play"></zan-icon>
+          <i-icon type="play" size="25" />
         </view>
-      </zan-col>
-      <zan-col col="8" col-class="custom-zan-col">
+      </i-col>
+      <i-col span="8" i-class="custom-i-col">
         <view bind:tap="stop" class="button-stop">
-          <zan-icon type="stop"></zan-icon>
+          <i-icon type="offline" size="25" />
         </view>
-      </zan-col>
-      <zan-col col="8" col-class="custom-zan-col">
+      </i-col>
+      <i-col span="8" i-class="custom-i-col">
         <view bind:tap="remove" class="button-delete">
-          <zan-icon type="delete"></zan-icon>
+          <i-icon type="delete" size="25" />
         </view>
-      </zan-col>
-    </zan-row>
-  </zan-panel>
-  <zan-panel title="基本信息">
-    <zan-cell-group>
-      <zan-cell title="名称" value="{{name}}"></zan-cell>
-      <zan-cell title="镜像" value="{{image}}"></zan-cell>
-      <zan-cell title="短ID" value="{{short_id}}"></zan-cell>
-      <zan-cell title="状态" value="{{status}}"></zan-cell>
-    </zan-cell-group>
-  </zan-panel>
-  <zan-panel title="高级操作">
-    <zan-button-group>
-      <zan-button bind:btnclick="getStats">{{button.stat_button_title}}</zan-button>
-      <zan-button bind:btnclick="getLogs">{{button.log_button_title}}</zan-button>
-    </zan-button-group>
-  </zan-panel>
+      </i-col>
+    </i-row>
+  </i-panel>
+  <i-panel title="基本信息">
+    <i-cell-group>
+      <i-cell title="名称" value="{{name}}"></i-cell>
+      <i-cell title="镜像" value="{{image}}"></i-cell>
+      <i-cell title="短ID" value="{{short_id}}"></i-cell>
+      <i-cell title="状态" value="{{status}}"></i-cell>
+    </i-cell-group>
+  </i-panel>
+  <i-panel title="高级操作">
+    <i-button size="small" shape="circle" type="info" bind:click="getStats">{{button.stat_button_title}}</i-button>
+    <i-button size="small" shape="circle" type="info" bind:click="getLogs">{{button.log_button_title}}</i-button>
+  </i-panel>
   <view wx:if="{{info.kind == 'logs'}}">
     <view wx:if="{{info.show}}">
-      <zan-panel title="{{info.title}}" hide-border="true">
+      <i-panel title="{{info.title}}">
         <view class="info-content">
-          <zan-button-group>
-            <zan-cell value="日志开始">
-              <zan-icon slot="icon" type="records"></zan-icon>
-            </zan-cell>
+          <i-cell-group>
+            <i-cell value="日志开始">
+              <i-icon slot="icon" size="20" type="document" />
+            </i-cell>
             <text>{{info.content}}</text>
-            <zan-cell value="日志结束">
-              <zan-icon slot="icon" type="check"></zan-icon>
-            </zan-cell>
-          </zan-button-group>
+            <i-cell value="日志结束">
+              <i-icon slot="icon" size="20" type="document_fill" />
+            </i-cell>
+          </i-cell-group>
         </view>
-      </zan-panel>
+      </i-panel>
     </view>
   </view>
   <view wx:elif="{{info.kind == 'stats'}}">
     <view wx:if="{{info.show}}">
-      <zan-panel title="{{info.title}}" hide-border="true">
+      <i-panel title="{{info.title}}" hide-border="true">
         <view class="info-content">
-          <zan-cell-group>
-            <zan-cell title="CPU" value="{{info.content.cpu_percent}}%"></zan-cell>
-            <zan-cell title="内存" value="{{info.content.memory_usage}}MB"></zan-cell>
-            <zan-cell title="网络" value="↓{{info.content.network_usage.download}}MB/{{info.content.network_usage.upload}}MB↑"></zan-cell>
-          </zan-cell-group>
+          <i-cell-group>
+            <i-cell title="CPU" value="{{info.content.cpu_percent}}%"></i-cell>
+            <i-cell title="内存" value="{{info.content.memory_usage}}MB"></i-cell>
+            <i-cell title="网络" value="↓{{info.content.network_usage.download}}MB/{{info.content.network_usage.upload}}MB↑"></i-cell>
+          </i-cell-group>
         </view>
-      </zan-panel>
+      </i-panel>
     </view>
   </view>
 </view>
-<zan-toast id="zan-toast"></zan-toast>
+<i-toast id="toast" />

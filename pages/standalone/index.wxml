@@ -1,30 +1,37 @@
 <!--pages/standalone/index.wxml-->
 <view>
   <view class>
-    <zan-button type="primary" bind:tap="addServer">
+    <i-button type="primary" long="true" bind:click="addServer">
       添加服务器
-    </zan-button>
+    </i-button>
   </view>
   <view class="server-wrap">
-    <view wx:for="{{servers}}" wx:for-item="server" wx:key="remark" wx:for-index="server_index">
-      <zan-panel title="{{server.remark}} ({{server.containers.length}}个容器)">
+    <view wx:for="{{servers}}" wx:for-item="server" wx:for-index="key" wx:key="{{key}}">
+      <i-panel title="{{key}} ({{server.containers.length}}个容器)">
         <view>
-          <zan-cell-group>
-            <view wx:for="{{server.containers}}" wx:for-item="container" wx:for-index="container_index" wx:key="shortid">
-              <zan-cell title="{{container.name}}" label="{{container.image}}" value="详细信息" is-link url="../container/index?server_index={{server_index}}&container_index={{container_index}}&name={{container.name}}&image={{container.image}}&&short_id={{container.short_id}}&status={{container.status}}&address={{server.address}}&token={{server.token}}&remark={{server.remark}}"></zan-cell>
-            </view>
-            <zan-cell title="删除服务器" class="button-delete" bind:tap="deleteServer" data-remark="{{server.remark}}">
-              <zan-icon slot="footer" type="delete" class='button-delete'></zan-icon>
-            </zan-cell>
-          </zan-cell-group>
+          <i-cell-group>
+            <i-cell wx:for="{{server.containers}}" wx:for-item="container" wx:for-index="container_index" wx:key="shortid" title="{{container.name}}" label="{{container.image}}" value="详细信息" is-link url="../container/index?container_index={{container_index}}&name={{container.name}}&image={{container.image}}&&short_id={{container.short_id}}&status={{container.status}}&address={{server.address}}&token={{server.token}}&remark={{key}}"></i-cell>
+            <i-cell>
+              <i-button slot="icon" shape="circle" size="small" bind:click="refreshServer" data-key="{{key}}" data-server="{{server}}">
+                <i-icon type="refresh" size="20" />
+              </i-button>
+              <i-button shape="circle" size="small" bind:click="checkServer" data-key="{{key}}" data-server="{{server}}">查看服务器信息</i-button>
+              <i-button slot="footer" shape="circle" type="error" size="small" bind:click="deleteServer" data-remark="{{key}}">删除</i-button>
+            </i-cell>
+          </i-cell-group>
         </view>
-      </zan-panel>
+      </i-panel>
     </view>
   </view>
-  <view class="no-server-text" wx:if="{{servers.length == 0}}">
+  <view class="no-server-text" wx:if="{{tip}}">
     <rich-text>还没有添加服务器</rich-text>
-    <rich-text>点击上方绿色按钮添加</rich-text>
+    <rich-text>点击上方按钮添加</rich-text>
   </view>
 </view>
-
-<zan-toast id="zan-toast"></zan-toast>
+<i-toast id="toast" />
+<i-modal title="{{modal.remark}}" visible="{{ modal.visible }}" actions="{{modal.actions}}" bind:click="modalClick">
+  <view>地址:</view>
+  <view>{{modal.address}}</view>
+  <view>Token:</view>
+  <view>{{modal.token}}</view>
+</i-modal>

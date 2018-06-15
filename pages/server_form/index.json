@@ -1,10 +1,10 @@
 {
   "navigationBarTitleText": "添加服务器",
   "usingComponents": {
-    "zan-icon": "../../utils/zanui/icon/index",
-    "zan-field": "../../utils/zanui/field/index",
-    "zan-button": "../../utils/zanui/btn/index",
-    "zan-button-group": "../../utils/zanui/btn-group/index",
-    "zan-toptips": "../../utils/zanui/toptips/index"
+    "i-icon": "../../ui/iview/icon/index",
+    "i-button": "../../ui/iview/button/index",
+    "i-input": "../../ui/iview/input/index",
+    "i-message": "../../ui/iview/message/index",
+    "i-toast": "../../ui/iview/toast/index"
   }
 }

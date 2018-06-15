@@ -1,7 +1,6 @@
 /* pages/server_form/index.wxss */
 
 .container {
-  padding: 5%;
   padding-top: 50px;
 }
 

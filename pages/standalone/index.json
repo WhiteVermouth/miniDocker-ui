@@ -1,11 +1,12 @@
 {
   "usingComponents": {
-    "zan-button": "../../utils/zanui/btn/index",
-    "zan-panel": "../../utils/zanui/panel/index",
-    "zan-cell": "../../utils/zanui/cell/index",
-    "zan-cell-group": "../../utils/zanui/cell-group/index",
-    "zan-icon": "../../utils/zanui/icon/index",
-    "zan-toast": "../../utils/zanui/toast/index"
+    "i-button": "../../ui/iview/button/index",
+    "i-toast": "../../ui/iview/toast/index",
+    "i-panel": "../../ui/iview/panel/index",
+    "i-cell-group": "../../ui/iview/cell-group/index",
+    "i-cell": "../../ui/iview/cell/index",
+    "i-icon": "../../ui/iview/icon/index",
+    "i-modal": "../../ui/iview/modal/index"
   },
   "enablePullDownRefresh": true
 }

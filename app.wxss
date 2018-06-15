@@ -1,2 +1,1 @@
 /**app.wxss**/
-@import "./utils/zanui/index.wxss"
