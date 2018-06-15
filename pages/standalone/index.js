@@ -59,11 +59,15 @@ Page({
         duration: 0,
         type: 'loading'
       })
+      this.loadContainersAll()
+      $Toast.hide()
       this.setData({
         tip: false
       })
-      this.loadContainersAll()
-      $Toast.hide()
+    } else if (Object.keys(this.data.servers).length != 0) {
+      this.setData({
+        tip: false
+      })
     } else {
       this.setData({
         tip: true
@@ -125,7 +129,10 @@ Page({
     var key = e.currentTarget.dataset.key
     var server = e.currentTarget.dataset.server;
     this.loadContainersByServer(key, server)
-    $Toast.hide()
+    $Toast({
+      content: '刷新完成',
+      type: 'success'
+    })
   },
 
   /**
