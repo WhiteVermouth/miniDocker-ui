@@ -28,25 +28,25 @@
 
 #### 微信小程序搜索: **mDocker**
 
-<img src="images/samples/search_mini_program.jpg" width="40%" />
+<img src="images/samples/search_mini_program.png" width="40%" />
 
 ## 功能展示
 
 ### 初始界面
 
-<img src="images/samples/standalone_inital_ui.jpg" width="40%" />
+<img src="images/samples/standalone_inital_ui.png" width="40%" />
 
 ### 添加服务器
 
-<img src="images/samples/add_server.jpg" width="40%" />
+<img src="images/samples/add_server.png" width="40%" />
 
-### 服务端容器总揽
+### 服务端容器容器总览
 
-<img src="images/samples/standalone_list_containers.jpg" width="40%" />
+<img src="images/samples/standalone_list_containers.png" width="40%" />
 
 ### 容器详细信息及操作面板
 
-<img src="images/samples/container_ui.jpg" width="40%" />
+<img src="images/samples/container_ui.png" width="40%" />
 
 ## TODO
 

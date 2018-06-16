@@ -187,12 +187,6 @@ Page({
    */
   loadContainersAll: function() {
     var servers = wx.getStorageSync("servers")
-    if (Object.keys(servers).length == 0) {
-      this.setData({
-        tip: true
-      })
-      return
-    }
     for (var key in servers) {
       this.loadContainersByServer(key, servers[key])
     }
@@ -208,12 +202,11 @@ Page({
       },
       dataType: "json",
       success: (res) => {
-        var containers = res.data.slice()
         this.setData({
           ['servers.' + key]: {
             address: server.address,
             token: server.token,
-            containers: containers
+            containers: res.data.slice()
           }
         })
       },
