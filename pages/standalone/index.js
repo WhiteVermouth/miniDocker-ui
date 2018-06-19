@@ -54,13 +54,7 @@ Page({
   onShow: function() {
     var servers = wx.getStorageSync("servers")
     if (Object.keys(this.data.servers).length != Object.keys(servers).length) {
-      $Toast({
-        content: '加载容器信息',
-        duration: 0,
-        type: 'loading'
-      })
       this.loadContainersAll()
-      $Toast.hide()
       this.setData({
         tip: false
       })

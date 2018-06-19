@@ -90,7 +90,7 @@ Page({
       });
       return
     }
-    if (!utils.isValidIPAddress(address) && !utils.isValidDomain(address)) {
+    if (!getApp().globalData.isDebug && !utils.isValidIPAddress(address) && !utils.isValidDomain(address)) {
       $Message({
         content: '无效地址',
         type: 'error'

@@ -1,1 +1,10 @@
 /* pages/swarm/index.wxss */
+
+.tip {
+  text-align: center;
+  padding-top: 45%;
+}
+
+.tip-button {
+  padding-top: 20px;
+}

@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    
+    "i-alert": "../../ui/iview/alert/index",
+    "i-toast": "../../ui/iview/toast/index",
+    "i-button": "../../ui/iview/button/index",
+    "i-icon": "../../ui/iview/icon/index"
   }
 }

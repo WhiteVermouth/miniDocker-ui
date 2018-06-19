@@ -1,4 +1,18 @@
 <!--pages/swarm/index.wxml-->
 <view>
-  
+  <i-alert type="warning">
+    Swarm 模式处于开发阶段，将在2.0版本发布！
+  </i-alert>
 </view>
+<view>
+  <view class="tip">
+    <view>
+      <text>点击添加\n</text>
+      <text>Docker Swarm\n</text>
+    </view>
+    <view class='tip-button' bind:tap="addSwarm">
+      <i-icon type="add" size="50" color="#2d8cf0" />
+    </view>
+  </view>
+</view>
+<i-toast id="toast" />

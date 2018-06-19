@@ -1,0 +1,26 @@
+/* pages/swarm_form/index.wxss */
+
+/* pages/server_form/index.wxss */
+
+.container {
+  padding-top: 50px;
+}
+
+.icon-wrap {
+  text-align: center;
+  padding-bottom: 50px;
+  color: rebeccapurple;
+}
+
+.form-wrap {
+  padding: 2px;
+}
+
+.button-wrap {
+  padding: 5%;
+  padding-top: 30px;
+}
+
+.button {
+  padding-bottom: 10px;
+}

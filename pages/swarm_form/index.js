@@ -1,29 +1,28 @@
-// pages/swarm/index.js
-const { $Toast } = require('../../ui/iview/base/index');
+// pages/swarm_form/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    stack: {
-
-    },
-    service: {
-
-    },
-    node: {
-
-    }
+    address: "",
+    password: ""
   },
 
-  addSwarm: function(e) {
-    $Toast({
-      content: '敬请期待～'
-    });
-    // wx.navigateTo({
-    //   url: '../swarm_form/index',
-    // })
+  change: function(e) {
+    this.setData({
+      [e.currentTarget.dataset.var]: e.detail.detail.value
+    })
+  },
+
+  add: function() {
+    
+  },
+
+  cancel: function() {
+    wx.navigateBack({
+      delta: 1,
+    })
   },
 
   /**
@@ -81,5 +80,4 @@ Page({
   onShareAppMessage: function() {
 
   }
-
 })

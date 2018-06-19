@@ -1,19 +1,16 @@
-<!--pages/server_form/index.wxml-->
-
-<view class='container'>
-
+<!--pages/swarm_form/index.wxml-->
+<view class="container">
   <view class="icon-wrap">
     <i-icon type="add" size="28" />
   </view>
-
   <view>
     <view class="form-wrap">
       <i-input title="地址" name="address" value="{{address}}" placeholder="IP地址或域名" maxlength="50" mode="wrapped" data-var="address" bind:change="change">
       </i-input>
       <i-input title="密码" name="password" value="{{password}}" type="password" placeholder="输入密码" maxlength="20" mode="wrapped" data-var="password" bind:change="change">
       </i-input>
-      <i-input title="备注" name="remark" value="{{remark}}" placeholder="输入备注（唯一）" maxlength="20" mode="wrapped" data-var="remark" bind:change="change">
-      </i-input>
+      <!-- <i-input title="备注" name="remark" value="{{remark}}" placeholder="输入备注（唯一）" maxlength="20" mode="wrapped" data-var="remark" bind:change="change">
+      </i-input> -->
     </view>
     <view class="button-wrap">
       <view class='button'>
@@ -25,5 +22,3 @@
     </view>
   </view>
 </view>
-<i-message id="message" />
-<i-toast id="toast" />

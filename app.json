@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/standalone/index",
-    "pages/swarm/index",
     "pages/server_form/index",
-    "pages/container/index"
+    "pages/container/index",
+    "pages/swarm/index",
+    "pages/swarm_form/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
